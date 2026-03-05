@@ -6,11 +6,14 @@ document.addEventListener('click', (event) => {
   const coordY = event.clientY;
   const wall = document.querySelector('.wall');
   const spider = document.querySelector('.spider');
+  const field = wall.getBoundingClientRect();
 
-  const leftBorderField = wall.offsetLeft + wall.clientLeft + spider.width / 2;
-  const topBorderField = wall.offsetTop + wall.clientTop + spider.height / 2;
-  const fieldWidth = wall.clientWidth - spider.width;
-  const fieldHeight = wall.clientHeight - spider.height;
+  console.log(field);
+
+  const leftBorderField = field.x + wall.clientLeft + spider.offsetWidth / 2;
+  const topBorderField = field.y + wall.clientTop + spider.offsetHeight / 2;
+  const fieldWidth = wall.clientWidth - spider.offsetWidth;
+  const fieldHeight = wall.clientHeight - spider.offsetHeight;
 
   if (
     coordX > leftBorderField &&
