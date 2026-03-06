@@ -7,9 +7,11 @@ document.addEventListener('click', (event) => {
   const field = wall.getBoundingClientRect();
 
   // Підрахунок координат центру павука
-  let left = event.clientX - field.left - spider.offsetWidth / 2;
+  let left =
+    event.clientX - field.left - wall.clientLeft - spider.offsetWidth / 2;
   // eslint-disable-next-line no-shadow
-  let top = event.clientY - field.top - spider.offsetHeight / 2;
+  let top =
+    event.clientY - field.top - wall.clientTop - spider.offsetHeight / 2;
 
   // Обмеження координат, щоб павук не виліз за межі
   left = Math.max(0, Math.min(left, wall.clientWidth - spider.offsetWidth));
