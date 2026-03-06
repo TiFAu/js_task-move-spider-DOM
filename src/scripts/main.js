@@ -2,28 +2,18 @@
 
 // eslint-disable-next-line no-shadow
 document.addEventListener('click', (event) => {
-  const coordX = event.clientX;
-  const coordY = event.clientY;
   const wall = document.querySelector('.wall');
   const spider = document.querySelector('.spider');
   const field = wall.getBoundingClientRect();
 
-  console.log(field);
+  // Підрахунок координат центру павука
+  let left = event.clientX - field.left - spider.offsetWidth / 2;
+  // eslint-disable-next-line no-shadow
+  let top = event.clientY - field.top - spider.offsetHeight / 2;
 
-  const leftBorderField = field.x + wall.clientLeft + spider.offsetWidth / 2;
-  const topBorderField = field.y + wall.clientTop + spider.offsetHeight / 2;
-  const fieldWidth = wall.clientWidth - spider.offsetWidth;
-  const fieldHeight = wall.clientHeight - spider.offsetHeight;
-
-  if (
-    coordX > leftBorderField &&
-    coordX < leftBorderField + fieldWidth &&
-    coordY > topBorderField &&
-    coordY < topBorderField + fieldHeight
-  ) {
-    spider.style.left = `${coordX - leftBorderField}px`;
-    spider.style.top = `${coordY - topBorderField}px`;
-
-    // console.log(spider.style.left, spider.style.top);
-  }
+  // Обмеження координат, щоб павук не виліз за межі
+  left = Math.max(0, Math.min(left, wall.clientWidth - spider.offsetWidth));
+  top = Math.max(0, Math.min(top, wall.clientHeight - spider.offsetHeight));
+  spider.style.left = `${left}px`;
+  spider.style.top = `${top}px`;
 });
