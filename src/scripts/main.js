@@ -6,6 +6,10 @@ document.addEventListener('click', (event) => {
   const spider = document.querySelector('.spider');
   const field = wall.getBoundingClientRect();
 
+  if (!wall.contains(event.target)) {
+    return;
+  }
+
   // Підрахунок координат центру павука
   let left =
     event.clientX - field.left - wall.clientLeft - spider.offsetWidth / 2;
